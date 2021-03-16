@@ -34,6 +34,12 @@ public class HeroApplicationIT {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(hero1))
         ).andExpect(status().isCreated());
+       //assertion to ensure value post above is retrieved successfully
+        mockMvc.perform(get("/listheroes")).andExpect(status().isOk())
+                .andExpect(jsonPath("length()").value(1))
+                .andExpect(jsonPath("[0].name").value("superman"));
+
+
 
     }
 }
