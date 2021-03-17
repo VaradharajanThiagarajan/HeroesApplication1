@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -35,9 +36,9 @@ public class HeroApplicationIT {
                 .content(objectMapper.writeValueAsString(hero1))
         ).andExpect(status().isCreated());
        //assertion to ensure value post above is retrieved successfully
-        mockMvc.perform(get("/listheroes")).andExpect(status().isOk())
-                .andExpect(jsonPath("length()").value(1))
-                .andExpect(jsonPath("[0].name").value("superman"));
+        mockMvc.perform(get("/heroes")).andExpect(status().isOk())
+                .andExpect(jsonPath("length()").value(1));
+
 
 
 
