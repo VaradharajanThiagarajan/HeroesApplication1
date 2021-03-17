@@ -30,17 +30,23 @@ public class HeroApplicationIT {
 
 
         HeroesDto hero1 = new HeroesDto("zuperman");
+        HeroesDto hero2 = new HeroesDto("heman");
 
         mockMvc.perform(post("/heroes")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(hero1))
         ).andExpect(status().isCreated());
+
+        mockMvc.perform(post("/heroes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(hero2))
+        ).andExpect(status().isCreated());
+
        //assertion to ensure value post above is retrieved successfully
         mockMvc.perform(get("/heroes")).andExpect(status().isOk())
-                .andExpect(jsonPath("length()").value(1))
-                .andExpect(jsonPath("[0].name").value("zuperman"));
-
-
+                .andExpect(jsonPath("length()").value(2))
+                .andExpect(jsonPath("[0].name").value("zuperman"))
+                .andExpect(jsonPath("[1].name").value("heman"));
 
 
     }
