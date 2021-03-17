@@ -37,7 +37,8 @@ public class HeroApplicationIT {
         ).andExpect(status().isCreated());
        //assertion to ensure value post above is retrieved successfully
         mockMvc.perform(get("/heroes")).andExpect(status().isOk())
-                .andExpect(jsonPath("length()").value(1));
+                .andExpect(jsonPath("length()").value(1))
+                .andExpect(jsonPath("[0].name").value("superman"));
 
 
 

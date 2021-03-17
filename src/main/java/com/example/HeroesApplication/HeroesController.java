@@ -19,7 +19,7 @@ public class HeroesController {
 
     @GetMapping("/heroes")
     public String getHeroes() {
-      return "[{}]";
+      return "[{'name':'superman'}]";
     }
 
 }
