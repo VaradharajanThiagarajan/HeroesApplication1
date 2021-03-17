@@ -29,7 +29,7 @@ public class HeroApplicationIT {
     public void addHeroes() throws Exception {
 
 
-        Heroes hero1 = new Heroes("superman");
+        Heroes hero1 = new Heroes("zuperman");
 
         mockMvc.perform(post("/heroes")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -38,7 +38,7 @@ public class HeroApplicationIT {
        //assertion to ensure value post above is retrieved successfully
         mockMvc.perform(get("/heroes")).andExpect(status().isOk())
                 .andExpect(jsonPath("length()").value(1))
-                .andExpect(jsonPath("[0].name").value("superman"));
+                .andExpect(jsonPath("[0].name").value("zuperman"));
 
 
 
