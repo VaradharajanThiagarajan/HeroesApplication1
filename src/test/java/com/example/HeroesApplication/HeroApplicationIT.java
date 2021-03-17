@@ -29,7 +29,7 @@ public class HeroApplicationIT {
     public void addHeroes() throws Exception {
 
 
-        Heroes hero1 = new Heroes("zuperman");
+        HeroesDto hero1 = new HeroesDto("zuperman");
 
         mockMvc.perform(post("/heroes")
                 .contentType(MediaType.APPLICATION_JSON)
