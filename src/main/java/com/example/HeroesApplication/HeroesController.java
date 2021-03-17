@@ -9,17 +9,18 @@ import java.util.List;
 @RestController
 public class HeroesController {
 
-
+  List<Heroes> heroeslist = new ArrayList<Heroes>();
 
     @PostMapping("/heroes")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addHeroes(){
+    public void addHeroes(@RequestBody Heroes heroes){
+      heroeslist.add(heroes);
 
     }
 
     @GetMapping("/heroes")
-    public String getHeroes() {
-      return "[{'name':'superman'}]";
+    public List<Heroes> getHeroes() {
+      return this.heroeslist;
     }
 
 }
