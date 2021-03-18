@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -15,7 +14,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-
 
 
 public class HeroApplicationIT {
@@ -56,7 +54,7 @@ public class HeroApplicationIT {
 
 
         HeroesDto hero1 = new HeroesDto("zuperman");
-        HeroesDto hero2 = new HeroesDto("heman","image1",100,100,"fire",100,200,100,100,"description123","story123");
+        HeroesDto hero2 = new HeroesDto("zeman","image1",100,100,"fire",100,200,100,100,"description123","story123");
 
         mockMvc.perform(post("/heroes")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -70,11 +68,11 @@ public class HeroApplicationIT {
 
         //assertion to ensure value post above is retrieved successfully
         mockMvc.perform(get("/heroesByName/")
-                .param("name","heman")
+                .param("name","zeman")
 
         ).andExpect(status().isOk())
                 .andExpect(jsonPath("length()").value(1))
-                .andExpect(jsonPath("[0].name").value("heman"))
+                .andExpect(jsonPath("[0].name").value("zeman"))
                 .andExpect(jsonPath("[0].image").value("image1"))
                 .andExpect(jsonPath("[0].height").value(100))
                 .andExpect(jsonPath("[0].weight").value(100))
