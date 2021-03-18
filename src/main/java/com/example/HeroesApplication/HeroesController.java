@@ -9,18 +9,24 @@ import java.util.List;
 @RestController
 public class HeroesController {
 
-  List<HeroesDto> heroeslist = new ArrayList<HeroesDto>();
+  HeroService heroService;
+
+  public HeroesController(HeroService heroService)
+  {
+    this.heroService = heroService;
+  }
 
     @PostMapping("/heroes")
     @ResponseStatus(HttpStatus.CREATED)
     public void addHeroes(@RequestBody HeroesDto heroesDto){
-      heroeslist.add(heroesDto);
+
+      this.heroService.create(heroesDto);
 
     }
 
     @GetMapping("/heroes")
     public List<HeroesDto> getHeroes() {
-      return this.heroeslist;
+      return this.heroService.fetchAll();
     }
 
 }
