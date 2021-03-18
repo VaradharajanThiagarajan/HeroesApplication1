@@ -5,13 +5,17 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Getter
 public class HeroesDto {
 
     private String name;
+
+    public HeroesDto(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;

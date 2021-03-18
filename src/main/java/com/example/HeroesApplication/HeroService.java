@@ -3,6 +3,9 @@ package com.example.HeroesApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class HeroService {
     private final HeroRepository heroRepository;
@@ -15,5 +18,15 @@ public class HeroService {
     public void create(HeroesDto heroDto)
     {
         heroRepository.save(new HeroEntity(heroDto.getName()));
+    }
+
+
+    public List<HeroesDto> fetchAll() {
+        return heroRepository.findAll()
+                .stream()
+                .map(heroEntity -> {
+                    return new HeroesDto(heroEntity.getName());
+                })
+                .collect(Collectors.toList());
     }
 }
