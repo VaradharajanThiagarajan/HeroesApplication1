@@ -56,7 +56,7 @@ public class HeroApplicationIT {
 
 
         HeroesDto hero1 = new HeroesDto("zuperman");
-        HeroesDto hero2 = new HeroesDto("heman");
+        HeroesDto hero2 = new HeroesDto("heman","image1",100,100,"fire",100,200,100,100,"description123","story123");
 
         mockMvc.perform(post("/heroes")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -79,14 +79,13 @@ public class HeroApplicationIT {
                 .andExpect(jsonPath("[0].height").value(100))
                 .andExpect(jsonPath("[0].weight").value(100))
                 .andExpect(jsonPath("[0].specialPower").value("fire"))
-                .andExpect(jsonPath("[0].intelligence").value(100))
-                .andExpect(jsonPath("[0].strength").value(200))
-                .andExpect(jsonPath("[0].power").value(100))
+                //.andExpect(jsonPath("[0].intelligence").value(100))
+                .andExpect(jsonPath("[0].strength").value(100))
+                .andExpect(jsonPath("[0].power").value(200))
                 .andExpect(jsonPath("[0].speed").value(100))
                 .andExpect(jsonPath("[0].agility").value(100))
                 .andExpect(jsonPath("[0].description").value("description123"))
                 .andExpect(jsonPath("[0].story").value("story123"));
-
 
 
     }
