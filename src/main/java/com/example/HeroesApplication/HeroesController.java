@@ -29,4 +29,9 @@ public class HeroesController {
       return this.heroService.fetchAll();
     }
 
+  @GetMapping("/heroesByName")
+  public List<HeroesDto> getHeroesByName(@RequestParam(value = "name") String name) {
+    return this.heroService.findByname(name);
+  }
+
 }

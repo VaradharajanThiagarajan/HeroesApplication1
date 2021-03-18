@@ -29,4 +29,14 @@ public class HeroService {
                 })
                 .collect(Collectors.toList());
     }
+
+
+    public List<HeroesDto> findByname(String name) {
+        return heroRepository.findByname(name)
+                .stream()
+                .map(heroEntity -> {
+                    return new HeroesDto(heroEntity.getName());
+                })
+                .collect(Collectors.toList());
+    }
 }

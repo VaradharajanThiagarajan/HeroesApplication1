@@ -50,4 +50,44 @@ public class HeroApplicationIT {
 
 
     }
+
+    @Test
+    public void fetchHeroesbyName() throws Exception {
+
+
+        HeroesDto hero1 = new HeroesDto("zuperman");
+        HeroesDto hero2 = new HeroesDto("heman");
+
+        mockMvc.perform(post("/heroes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(hero1))
+        ).andExpect(status().isCreated());
+
+        mockMvc.perform(post("/heroes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(hero2))
+        ).andExpect(status().isCreated());
+
+        //assertion to ensure value post above is retrieved successfully
+        mockMvc.perform(get("/heroesByName/")
+                .param("name","heman")
+
+        ).andExpect(status().isOk())
+                .andExpect(jsonPath("length()").value(1))
+                .andExpect(jsonPath("[0].name").value("heman"))
+                .andExpect(jsonPath("[0].image").value("image1"))
+                .andExpect(jsonPath("[0].height").value(100))
+                .andExpect(jsonPath("[0].weight").value(100))
+                .andExpect(jsonPath("[0].specialPower").value("fire"))
+                .andExpect(jsonPath("[0].intelligence").value(100))
+                .andExpect(jsonPath("[0].strength").value(200))
+                .andExpect(jsonPath("[0].power").value(100))
+                .andExpect(jsonPath("[0].speed").value(100))
+                .andExpect(jsonPath("[0].agility").value(100))
+                .andExpect(jsonPath("[0].description").value("description123"))
+                .andExpect(jsonPath("[0].story").value("story123"));
+
+
+
+    }
 }
